@@ -1,3 +1,4 @@
 [submodule "yolov5_ros/yolov5"]
 	path = yolov5_ros/yolov5
 	url = https://github.com/ultralytics/yolov5
+    branch = master
