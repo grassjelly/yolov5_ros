@@ -8,12 +8,16 @@ setup(
     name=package_name,
     version='0.0.1',
     packages=[
-        package_name
+        package_name,
+        'yolov5_ros.yolov5',
+        'yolov5_ros.yolov5.models',
+        'yolov5_ros.yolov5.utils'
     ],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml'])
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'config'), glob(os.path.join('config', '*.yaml'))),
     ],
     install_requires=['setuptools', 'shapely'],
     zip_safe=True,
