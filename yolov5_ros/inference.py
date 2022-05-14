@@ -20,14 +20,16 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 from utils.augmentations import letterbox
+from ament_index_python.packages import get_package_share_directory
 
+model_config = get_package_share_directory('yolov5_ros') + '/config/coco128.yaml'
 
 @torch.no_grad()
 class Yolov5:
     def __init__(
         self,
-        weights='',  # model.pt path(s)
-        data='',  # dataset.yaml path
+        weights=ROOT/'yolov5s.pt',  # model.pt path(s)
+        data=model_config,  # dataset.yaml path
         imgsz=[640, 640],  # inference size (height, width)
         conf_thres=0.25,  # confidence threshold
         iou_thres=0.45,  # NMS IOU threshold
@@ -101,6 +103,7 @@ class Yolov5:
 
         classes = []
         bounding_boxes = []
+        confidence = []
         if len(det):
             # Rescale boxes from img_size to im0 size
             det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
@@ -111,8 +114,9 @@ class Yolov5:
                 box.append((xyxy[2],xyxy[3]))
                 bounding_boxes.append(box)
                 classes.append(self.names[int(cls)])
+                confidence.append(conf)
 
-        return classes, bounding_boxes
+        return classes, bounding_boxes, confidence
 
 
     def preprocess(self, im):
