@@ -3,7 +3,7 @@
 <package format="2">
   <name>yolov5_ros</name>
   <version>0.0.0</version>
-  <description>ROS2 Robot Arm Perception Modules</description>
+  <description>Colconized YoloV5 package</description>
   <maintainer email="jimenojmm@gmail.com">juan</maintainer>
   <license>GPL3.0</license>
   <exec_depend>python3-numpy</exec_depend>
