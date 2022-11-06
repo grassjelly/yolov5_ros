@@ -12,7 +12,7 @@ Colconized [yolov5](https://github.com/ultralytics/yolov5) Python library for ea
 
 Import inference from yolov5_ros and call the `predict` function.
 
-    import matplotlib
+    from yolov5_ros.inference import Yolov5
 
     model = Yolov5(
         'test.pt',
