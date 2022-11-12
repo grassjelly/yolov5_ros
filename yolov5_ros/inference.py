@@ -102,7 +102,6 @@ class Yolov5:
         det = pred[0].cpu().numpy()
 
         classes = []
-        object_indices = []
         bounding_boxes = []
         confidence = []
         if len(det):
@@ -115,11 +114,10 @@ class Yolov5:
                 box.append((xyxy[2],xyxy[3]))
                 object_index = int(cls)
                 bounding_boxes.append(box)
-                object_indices.append(object_index)
                 classes.append(self.names[object_index])
                 confidence.append(conf)
 
-        return classes, object_indices, bounding_boxes, confidence
+        return classes, bounding_boxes, confidence
 
 
     def preprocess(self, im):
