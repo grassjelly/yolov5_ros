@@ -40,6 +40,12 @@ class Yolov5:
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
     ):
+        if weights is None:
+            weights=ROOT/'yolov5s.pt'
+
+        if data is None:
+            data=model_config
+
         self.conf_thres = conf_thres
         self.iou_thres = iou_thres
         self.agnostic_nms = agnostic_nms
